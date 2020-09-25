@@ -5,12 +5,14 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable,
          :omniauth_providers => [:facebook] #omniauth_providers: [:facebook]
 
+  has_one_attached :image
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
         user.name = data["name"] if user.name.blank?
-        # image
+        # image - permission! require App Review
       end
     end
   end

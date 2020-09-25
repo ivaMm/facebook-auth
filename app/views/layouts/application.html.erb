@@ -18,6 +18,11 @@
       <% unless current_user %>
         <%= link_to "Continue with Facebook", user_facebook_omniauth_authorize_path, class: "btn-fb" %>
       <% else %>
+        <!--
+        <div>
+          <%#= cl_image_tag current_user.image.key, height: 50, width: 50, crop: :fill, class: 'avatar' %>
+        </div>
+        -->
         <h1>Hello <%= current_user.name.split(" ")[0] %>!</h1>
         <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn-fb" %>
       <% end %>
