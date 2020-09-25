@@ -12,17 +12,16 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
+    <!--<#%= render 'shared/navbar' %> -->
     <%= render 'shared/flashes' %>
-
-
-    <% unless current_user %>
-      <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
-    <% else %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-      <h1>Hello <%= current_user.name.split(" ")[0] %>!</h1>
-    <% end %>
-
+    <div class="container justify-content-sm-center" style="text-align: center; padding-top: 64px;">
+      <% unless current_user %>
+        <%= link_to "Continue with Facebook", user_facebook_omniauth_authorize_path, class: "btn-fb" %>
+      <% else %>
+        <h1>Hello <%= current_user.name.split(" ")[0] %>!</h1>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "btn-fb" %>
+      <% end %>
+    </div>
     <%= yield %>
   </body>
 </html>
