@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :omniauthable,
          :omniauth_providers => [:facebook] #omniauth_providers: [:facebook]
 
-  has_one_attached :image
+  # has_one_attached :image
 
   def self.new_with_session(params, session)
     super.tap do |user|
