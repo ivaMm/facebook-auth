@@ -24,6 +24,7 @@ class User < ApplicationRecord
       # user.image = auth.info.image # assuming the user model has an image
       user.provider = auth.provider
       user.uid = auth.uid
+      user.token = auth.credentials.token
       user.password = Devise.friendly_token[0,20]
     end
   end
