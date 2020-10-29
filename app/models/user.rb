@@ -11,6 +11,7 @@ class User < ApplicationRecord
     user_params[:name] = auth.info.name
     user_params[:picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
+    user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
     user_params = user_params.to_h
 
     user = User.find_by(provider: auth.provider, uid: auth.uid)
