@@ -12,7 +12,6 @@ class User < ApplicationRecord
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
         user.name = data["name"] if user.name.blank?
-        # image - permission! require App Review
       end
     end
   end
@@ -21,7 +20,7 @@ class User < ApplicationRecord
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.name = auth.info.name
-      # user.image = auth.info.image # assuming the user model has an image
+      user.picture_url = auth.info.image # assuming the user model has an image
       user.provider = auth.provider
       user.uid = auth.uid
       user.token = auth.credentials.token

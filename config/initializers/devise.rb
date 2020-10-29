@@ -309,5 +309,10 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
-  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], callback_url: "http://localhost:3000/users/auth/facebook/callback", scope: 'user_photos'
+  config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_APP_SECRET'], callback_url: "http://localhost:3000/users/auth/facebook/callback",
+    scope: 'email',
+    info_fields: 'email, name',
+    image_size: 'square',  # 50x50, guaranteed ratio
+    secure_image_url: true
+  # scope: 'user_photos' => permission! require App Review
 end
